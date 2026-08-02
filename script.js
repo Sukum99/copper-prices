@@ -21,7 +21,7 @@ const categories = [
     { name: "กลึงทองแดง", deduction: 0.30, formula: "LME - 30%" }
 ];
 
-// Configuration — populated from Firebase RTDB (read-only)
+// Configuration — populated from copperData.json (read-only)
 let config = {
     lmePriceUSD: null,      // Base price in USD/tonne (backward compat)
     lmeRawUSD: null,         // Raw LME price in USD/tonne
@@ -29,6 +29,7 @@ let config = {
     comexPriceLbs: null,     // COMEX in USD/lb
     fxRateTHB: null,
     targetLme7DaysUSD: null,
+    priceHistory: [],         // 7-day LME history [{date, price}]
     lastUpdated: null,
     lastForecastDateKey: null,
     dataSource: null,
@@ -102,6 +103,7 @@ async function fetchFromDatabase() {
         config.targetLme7DaysUSD = dbData.targetLme7DaysUSD;
         config.aiAnalysisText = dbData.aiAnalysisText || null;
         config.aiModel = dbData.aiModel || null;
+        config.priceHistory = dbData.priceHistory || [];
         config.lastUpdated = dbData.lastUpdated;
         config.lastForecastDateKey = dbData.lastForecastDateKey;
         config.dataSource = dbData.dataSource || "unknown";
@@ -251,6 +253,132 @@ function updateUI() {
     if (disclaimerEl && config.aiModel) {
         disclaimerEl.textContent = `*ประมวลผลวิเคราะห์โดย ${config.aiModel}`;
     }
+
+    // Render 7-day price chart
+    renderPriceChart();
+}
+
+// ── Price History Chart ────────────────────────────────────────────────
+
+let priceChart = null;
+
+function renderPriceChart() {
+    const canvas = document.getElementById('price-chart');
+    if (!canvas || !config.priceHistory || config.priceHistory.length === 0) return;
+
+    // Reverse to oldest→newest order
+    const history = [...config.priceHistory].reverse();
+
+    // Parse date labels ("28. July 2026" → "28 Jul")
+    const labels = history.map(h => {
+        const parts = h.date.replace('.', '').split(' ');
+        const day = parts[0] || '';
+        const month = (parts[1] || '').substring(0, 3);
+        return `${day} ${month}`;
+    });
+    const prices = history.map(h => h.price);
+
+    // Find the midpoint index (current price at center)
+    const midIdx = Math.floor(prices.length / 2);
+
+    // Point styles: larger copper dot for the center (current price)
+    const pointRadii = prices.map((_, i) => i === prices.length - 1 ? 8 : (i === midIdx ? 6 : 3));
+    const pointBgColors = prices.map((_, i) =>
+        i === prices.length - 1 ? '#ff6b35' : (i === midIdx ? '#b87333' : 'rgba(184, 115, 51, 0.6)')
+    );
+    const pointBorderColors = prices.map((_, i) =>
+        i === prices.length - 1 ? '#fff' : (i === midIdx ? '#fff' : 'transparent')
+    );
+    const pointBorderWidths = prices.map((_, i) =>
+        i === prices.length - 1 ? 3 : (i === midIdx ? 2 : 0)
+    );
+
+    // Destroy previous chart instance if exists
+    if (priceChart) {
+        priceChart.destroy();
+    }
+
+    const ctx = canvas.getContext('2d');
+
+    // Gradient fill under the line
+    const gradient = ctx.createLinearGradient(0, 0, 0, 350);
+    gradient.addColorStop(0, 'rgba(184, 115, 51, 0.4)');
+    gradient.addColorStop(0.5, 'rgba(184, 115, 51, 0.15)');
+    gradient.addColorStop(1, 'rgba(184, 115, 51, 0)');
+
+    priceChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'LME Copper (USD/Tonne)',
+                data: prices,
+                borderColor: '#b87333',
+                backgroundColor: gradient,
+                borderWidth: 3,
+                fill: true,
+                tension: 0.35,
+                pointRadius: pointRadii,
+                pointBackgroundColor: pointBgColors,
+                pointBorderColor: pointBorderColors,
+                pointBorderWidth: pointBorderWidths,
+                pointHoverRadius: 10,
+                pointHoverBorderWidth: 3,
+            }]
+        },
+        options: {
+            responsive: true,
+            maintainAspectRatio: false,
+            interaction: {
+                intersect: false,
+                mode: 'index',
+            },
+            plugins: {
+                legend: { display: false },
+                tooltip: {
+                    backgroundColor: 'rgba(20, 20, 30, 0.95)',
+                    titleFont: { family: 'Kanit', size: 14 },
+                    bodyFont: { family: 'Inter', size: 13 },
+                    padding: 12,
+                    cornerRadius: 8,
+                    borderColor: 'rgba(184, 115, 51, 0.5)',
+                    borderWidth: 1,
+                    callbacks: {
+                        label: (ctx) => {
+                            const val = ctx.parsed.y;
+                            const idx = ctx.dataIndex;
+                            const isLatest = idx === prices.length - 1;
+                            const prefix = isLatest ? '★ ราคาล่าสุด: ' : '';
+                            return `${prefix}$${val.toLocaleString('en-US', { minimumFractionDigits: 2 })}`;
+                        }
+                    }
+                }
+            },
+            scales: {
+                x: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.06)',
+                    },
+                    ticks: {
+                        color: 'rgba(255, 255, 255, 0.6)',
+                        font: { family: 'Inter', size: 12 },
+                    },
+                    border: { color: 'rgba(255, 255, 255, 0.1)' },
+                },
+                y: {
+                    grid: {
+                        color: 'rgba(255, 255, 255, 0.06)',
+                    },
+                    ticks: {
+                        color: 'rgba(255, 255, 255, 0.6)',
+                        font: { family: 'Inter', size: 12 },
+                        callback: (val) => '$' + val.toLocaleString(),
+                    },
+                    border: { color: 'rgba(255, 255, 255, 0.1)' },
+                }
+            }
+        }
+    });
 }
 
 init();

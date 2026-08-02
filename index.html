@@ -8,7 +8,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="styles.css?v=5">
+    <link rel="stylesheet" href="styles.css?v=6">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.7/dist/chart.umd.min.js"></script>
 </head>
 <body>
     <div class="background-elements">
@@ -57,6 +58,17 @@
             <!-- Price cards will be injected here via JavaScript -->
         </div>
 
+        <!-- 7-Day Price History Chart -->
+        <div class="chart-section glass-panel" style="margin-top: 3rem; padding: 2rem;">
+            <div style="text-align: center; margin-bottom: 1rem;">
+                <h2 style="font-family: var(--font-heading); font-size: 1.8rem; color: var(--copper-light); margin: 0;">📊 กราฟราคา LME Copper 7 วันย้อนหลัง</h2>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.3rem;">USD/Tonne — ราคาปัจจุบันอยู่กลางกราฟ</p>
+            </div>
+            <div style="position: relative; height: 350px; width: 100%;">
+                <canvas id="price-chart"></canvas>
+            </div>
+        </div>
+
         <!-- Trend Analysis Section -->
         <div class="trend-section glass-panel" style="margin-top: 3rem; padding: 2rem;">
             <div class="header-content" style="margin-bottom: 1.5rem; text-align: center;">
@@ -91,6 +103,6 @@
         </div>
     </template>
 
-    <script src="script.js?v=17"></script>
+    <script src="script.js?v=20"></script>
 </body>
 </html>
