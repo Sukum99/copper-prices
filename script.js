@@ -170,13 +170,15 @@ function drawEmptyGrid() {
 // ── Main UI Update ─────────────────────────────────────────────────────
 
 function updateUI() {
-    if (!config.lmePriceUSD || !config.fxRateTHB) return;
+    // All prices are calculated from LME only
+    const lmeUSD = config.lmeRawUSD || config.lmePriceUSD;
+    if (!lmeUSD || !config.fxRateTHB) return;
 
-    const lmePriceKgUSD = config.lmePriceUSD / 1000;
+    const lmePriceKgUSD = lmeUSD / 1000;
     const basePriceTHB = lmePriceKgUSD * config.fxRateTHB;
     
-    // Base price (backward compat — used for scrap price calculation)
-    displayLME.textContent = `$${formatCurrency(config.lmePriceUSD)}`;
+    // Base price = LME price (used for all scrap price calculations)
+    displayLME.textContent = `$${formatCurrency(lmeUSD)}`;
     displayFX.textContent = `฿${formatCurrency(config.fxRateTHB)}`;
     displayBaseTHB.textContent = `฿${formatCurrency(basePriceTHB)}`;
     
