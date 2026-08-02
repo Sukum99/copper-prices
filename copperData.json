@@ -1,15 +1,15 @@
 {
-    "aiAnalysisText": "\u0e23\u0e32\u0e04\u0e32\u0e17\u0e2d\u0e07\u0e41\u0e14\u0e07 COMEX \u0e41\u0e2a\u0e14\u0e07\u0e41\u0e19\u0e27\u0e42\u0e19\u0e49\u0e21\u0e1b\u0e23\u0e31\u0e1a\u0e15\u0e31\u0e27\u0e02\u0e36\u0e49\u0e19\u0e43\u0e19\u0e0a\u0e48\u0e27\u0e07 10 \u0e27\u0e31\u0e19\u0e17\u0e35\u0e48\u0e1c\u0e48\u0e32\u0e19\u0e21\u0e32 \u0e41\u0e15\u0e48\u0e21\u0e35\u0e04\u0e27\u0e32\u0e21\u0e1c\u0e31\u0e19\u0e1c\u0e27\u0e19\u0e2a\u0e39\u0e07\u0e41\u0e25\u0e30\u0e22\u0e31\u0e07\u0e44\u0e21\u0e48\u0e0a\u0e31\u0e14\u0e40\u0e08\u0e19\u0e19\u0e31\u0e01",
-    "aiModel": "Qwen 3.6 Coder (SYNAPSE Local AI)",
-    "comexLastUpdated": "2026-08-02T08:00:05.016745Z",
-    "comexPriceLbs": 6.4654998779296875,
-    "comexPriceUSD": 14253.970340881348,
-    "dataSource": "SYNAPSE_Qwen_Updater",
-    "fxRateTHB": 33.45,
-    "lastForecastDateKey": "2000-01-01",
-    "lastUpdated": "2026-08-02T08:00:05.016745Z",
-    "lmeLastUpdated": "2026-07-30T05:04:53.390143Z",
-    "lmePriceUSD": 13581.0,
-    "lmeRawUSD": 13581.0,
-    "targetLme7DaysUSD": 14424.78
+  "lmePriceUSD": 10395.89,
+  "lmeRawUSD": 13834.0,
+  "comexPriceUSD": 10395.89,
+  "comexPriceLbs": 4.7155,
+  "fxRateTHB": 33.45,
+  "lastUpdated": "2026-08-02T08:15:31.362490+00:00",
+  "dataSource": "screenshot_ocr",
+  "targetLme7DaysUSD": 14424.78,
+  "lastForecastDateKey": "2000-01-01",
+  "aiAnalysisText": "ราคาทองแดง COMEX แสดงแนวโน้มปรับตัวขึ้นในช่วง 10 วันที่ผ่านมา แต่มีความผันผวนสูงและยังไม่ชัดเจนนัก",
+  "aiModel": "Qwen 3.6 Coder (SYNAPSE Local AI)",
+  "lmeLastUpdated": "2026-08-02T08:15:31.362490+00:00",
+  "comexLastUpdated": "2026-08-02T08:15:31.362490+00:00"
 }
