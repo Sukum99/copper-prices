@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ราคารับซื้อทองแดง | Copper Scrap Prices</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Kanit:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css?v=5">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="glow-orb orb-1"></div>
+        <div class="glow-orb orb-2"></div>
+    </div>
+
+    <main class="container">
+        <header class="glass-panel main-header">
+            <div class="header-content">
+                <h1>ราคารับซื้อเศษทองแดง</h1>
+                <p class="subtitle">อ้างอิงราคา LME & COMEX Copper — อัพเดทอัตโนมัติด้วย AI ทุก 1 ชั่วโมง</p>
+                <div class="status-bar">
+                    <span id="last-updated">อัพเดทล่าสุด: กำลังโหลด...</span>
+                    <span id="data-source" style="font-size: 0.8rem; color: var(--text-secondary);"></span>
+                </div>
+            </div>
+            
+            <div class="market-info">
+                <div class="info-card">
+                    <span class="info-label">LME Copper (USD/Tonne)</span>
+                    <span class="info-value" id="display-lme-raw">$---</span>
+                    <span class="info-sub" id="lme-updated-time" style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;"></span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">COMEX HG (USD/lb)</span>
+                    <span class="info-value" id="display-comex-lbs">$---</span>
+                    <span class="info-sub" id="comex-updated-time" style="font-size: 0.75rem; color: var(--text-secondary); margin-top: 0.25rem;"></span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Base Price (USD/Tonne)</span>
+                    <span class="info-value" id="display-lme">$---</span>
+                </div>
+                <div class="info-card">
+                    <span class="info-label">Exchange Rate (THB/USD)</span>
+                    <span class="info-value" id="display-fx">฿---</span>
+                </div>
+                <div class="info-card highlight">
+                    <span class="info-label">Base Price (THB/kg)</span>
+                    <span class="info-value" id="display-base-thb">฿---</span>
+                </div>
+            </div>
+        </header>
+
+        <div class="price-grid" id="price-grid">
+            <!-- Price cards will be injected here via JavaScript -->
+        </div>
+
+        <!-- Trend Analysis Section -->
+        <div class="trend-section glass-panel" style="margin-top: 3rem; padding: 2rem;">
+            <div class="header-content" style="margin-bottom: 1.5rem; text-align: center;">
+                <h2 style="font-family: var(--font-heading); font-size: 2rem; color: var(--copper-light);">วิเคราะห์แนวโน้มราคาทองแดง (7 วัน)</h2>
+            </div>
+            
+            <div style="text-align: center; margin-bottom: 2rem; background: rgba(184, 115, 51, 0.15); padding: 1.5rem; border-radius: var(--radius-md); border: 1px solid rgba(184, 115, 51, 0.3);">
+                <h3 style="color: var(--text-primary); font-size: 1.2rem; margin-bottom: 0.5rem;">ราคาคาดการณ์เป้าหมายใน 7 วัน (เฉพาะทองแดงปอกสวย)</h3>
+                <div style="font-size: 2.5rem; font-family: var(--font-heading); font-weight: 700; color: #fff; text-shadow: 0 0 15px rgba(184, 115, 51, 0.6);" id="target-beautiful-copper">
+                    กำลังวิเคราะห์ด้วย AI...
+                </div>
+                <p style="color: var(--text-secondary); font-size: 0.85rem; margin-top: 0.5rem;" id="target-disclaimer">*ประมวลผลทิศทางราคาโดย SYNAPSE Qwen 3.6 Local AI</p>
+                <div id="ai-analysis-text" style="color: #64ffda; font-size: 0.95rem; margin-top: 0.75rem; font-style: italic;"></div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Template for price card -->
+    <template id="card-template">
+        <div class="price-card glass-panel">
+            <div class="card-header">
+                <h3 class="copper-type">Type</h3>
+            </div>
+            <div class="card-body">
+                <div class="price-wrapper">
+                    <span class="currency">฿</span>
+                    <span class="amount">0</span>
+                    <span class="unit">/ kg</span>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <script src="script.js?v=17"></script>
+</body>
+</html>
