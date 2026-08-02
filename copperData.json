@@ -4,12 +4,42 @@
   "comexPriceUSD": 10395.89,
   "comexPriceLbs": 4.7155,
   "fxRateTHB": 33.45,
-  "lastUpdated": "2026-08-02T08:15:31.362490+00:00",
+  "priceHistory": [
+    {
+      "date": "31. July 2026",
+      "price": 13834
+    },
+    {
+      "date": "30. July 2026",
+      "price": 13795
+    },
+    {
+      "date": "29. July 2026",
+      "price": 13633
+    },
+    {
+      "date": "28. July 2026",
+      "price": 13643.5
+    },
+    {
+      "date": "27. July 2026",
+      "price": 13810
+    },
+    {
+      "date": "24. July 2026",
+      "price": 13617
+    },
+    {
+      "date": "23. July 2026",
+      "price": 13745
+    }
+  ],
+  "lastUpdated": "2026-08-02T08:28:10.155927+00:00",
   "dataSource": "screenshot_ocr",
   "targetLme7DaysUSD": 14424.78,
   "lastForecastDateKey": "2000-01-01",
   "aiAnalysisText": "ราคาทองแดง COMEX แสดงแนวโน้มปรับตัวขึ้นในช่วง 10 วันที่ผ่านมา แต่มีความผันผวนสูงและยังไม่ชัดเจนนัก",
   "aiModel": "Qwen 3.6 Coder (SYNAPSE Local AI)",
-  "lmeLastUpdated": "2026-08-02T08:15:31.362490+00:00",
-  "comexLastUpdated": "2026-08-02T08:15:31.362490+00:00"
+  "lmeLastUpdated": "2026-08-02T08:28:10.155927+00:00",
+  "comexLastUpdated": "2026-08-02T08:28:10.155927+00:00"
 }
