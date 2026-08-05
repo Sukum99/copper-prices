@@ -83,7 +83,8 @@ async function init() {
 
 async function fetchFromDatabase() {
     try {
-        const dbRes = await fetch(DB_URL);
+        const cacheBuster = `?t=${Date.now()}`;
+        const dbRes = await fetch(DB_URL + cacheBuster);
         if (!dbRes.ok) {
             throw new Error("Data fetch failed: " + dbRes.status);
         }
