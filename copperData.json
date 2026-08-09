@@ -3,7 +3,7 @@
   "lmeRawUSD": 14240.0,
   "comexPriceUSD": 10395.89,
   "comexPriceLbs": 4.7155,
-  "fxRateTHB": 33,
+  "fxRateTHB": 33.01,
   "priceHistory": [
     {
       "date": "07. August 2026",
@@ -34,12 +34,12 @@
       "price": 13795
     }
   ],
-  "lastUpdated": "2026-08-08T23:52:29.950841+00:00",
+  "lastUpdated": "2026-08-09T00:52:53.351479+00:00",
   "dataSource": "screenshot_ocr",
   "targetLme7DaysUSD": 14424.78,
   "lastForecastDateKey": "2000-01-01",
   "aiAnalysisText": "ราคาทองแดง COMEX แสดงแนวโน้มปรับตัวขึ้นในช่วง 10 วันที่ผ่านมา แต่มีความผันผวนสูงและยังไม่ชัดเจนนัก",
   "aiModel": "Qwen 3.6 Coder (SYNAPSE Local AI)",
-  "lmeLastUpdated": "2026-08-08T23:52:29.950841+00:00",
-  "comexLastUpdated": "2026-08-08T23:52:29.950841+00:00"
+  "lmeLastUpdated": "2026-08-09T00:52:53.351479+00:00",
+  "comexLastUpdated": "2026-08-09T00:52:53.351479+00:00"
 }
