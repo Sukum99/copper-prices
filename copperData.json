@@ -34,12 +34,12 @@
       "price": 14195
     }
   ],
-  "lastUpdated": "2026-08-13T13:37:19.440094+00:00",
+  "lastUpdated": "2026-08-13T14:37:49.298359+00:00",
   "dataSource": "screenshot_ocr",
   "targetLme7DaysUSD": 14424.78,
   "lastForecastDateKey": "2000-01-01",
   "aiAnalysisText": "ราคาทองแดง COMEX แสดงแนวโน้มปรับตัวขึ้นในช่วง 10 วันที่ผ่านมา แต่มีความผันผวนสูงและยังไม่ชัดเจนนัก",
   "aiModel": "Qwen 3.6 Coder (SYNAPSE Local AI)",
-  "lmeLastUpdated": "2026-08-13T13:37:19.440094+00:00",
-  "comexLastUpdated": "2026-08-13T13:37:19.440094+00:00"
+  "lmeLastUpdated": "2026-08-13T14:37:49.298359+00:00",
+  "comexLastUpdated": "2026-08-13T14:37:49.298359+00:00"
 }
